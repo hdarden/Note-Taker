@@ -1,27 +1,31 @@
 var fs = require("fs");
 var express = require ("express");
+
 var app = express();
+var PORT = process.env.PORT || 3000;
 
-var PORT = 8080;
-
+// Sets up the Express app to handle data parsing
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //html routes====================================
 
 //return notes.html
 app.get("/notes", function(req, res){
-    res.send
+    res.sendFile(path.join(_dirname, "/notes.html"))
 })
 
 //return index.html
 app.get("*", function(req, res){
-    res.send
+    res.sendFile(path.join("index.html"))
 })
 
 //API routes======================================
 
 //reads db.json file and return all saved notes as JSON
 app.get("/api/notes", function(req, res){
-    res.json
+    let savedNotes = "";
+    return res.json(savedNotes);
 })
 
 //receive a new note to save on the request body, 
