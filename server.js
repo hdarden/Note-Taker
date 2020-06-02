@@ -8,8 +8,11 @@ var PORT = process.env.PORT || 3000;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+//Serves resources from public folder
+app.use(express.static("public")); 
 
-//HTML routes====================================
+
+//======HTML routes===============================================================
 
 //return notes.html
 app.get("/notes", function(req, res){
@@ -22,7 +25,7 @@ app.get("*", function(req, res){
 })
 
 
-//API routes======================================
+//=====API routes=====================================================================
 
 //reads db.json file and return all saved notes as JSON
 app.get("/api/notes", function(req, res){
@@ -37,6 +40,7 @@ app.post("/api/notes", function(req, res){
     let newNote = req.body;
     
     fs.writeFile(__dirname, "/db/db.json", (newNote))
+    return res.json(newNote);
 })
 
 //receive a query parameter containing the id of a note to delete,
@@ -48,7 +52,7 @@ app.delete("api/notes/:id", function(req, res){
 })
 
 
-//Listener=============================================
+//======Listener========================================================================
 app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });
