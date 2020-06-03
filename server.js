@@ -35,27 +35,22 @@ app.get("/api/notes", function(req, res){
     fs.readFile("./db/db.json", function(err, data){
         if (err) throw err;
         res.json(JSON.parse(data));
-
     });
-    
 })
-
-//receive a new note to save on the request body, 
-//add it to the db.json file
-//and then return the new note to the client.
 
 //receives info from front end
 app.post("/api/notes", function(req, res){
     let newNote = req.body;
+    //assigns an id number to each note
     req.body.id = Date.now().toString();
-    console.log(req.body.id);
+    //console.log(req.body.id);
 
-    console.log(newNote)
+    //console.log(newNote)
     notes.push(newNote);
     
     fs.writeFile("./db/db.json", JSON.stringify(notes), function(err){
        if(err) throw err;
-        console.log("Success!");
+        console.log("You have posted note.");
     })
     res.json(newNote); 
 }); 
@@ -64,8 +59,17 @@ app.post("/api/notes", function(req, res){
 //give each note a unique "id" when its saved
 //to delete a note--read all notes from the db.json file, remove the note with the given "id" property, and then rewrite the notes to the db.json file.
  app.delete("api/notes/:id", function(req, res){
-    let noteParamsId = req.params.id;
-    console.log(noteParamsId)
+    const index = parseInt(req.params.id);
+    const removed = data.splice(index, 1);
+    
+    
+    fs.readFile("./db/db.json", JSON.stringify(removed), function(err){
+        if (err) throw err;
+        console.log("You have deleted note.")
+    });
+   
+
+    res.json(removed[0])
 }) 
 
 
