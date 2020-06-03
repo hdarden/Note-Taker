@@ -55,21 +55,19 @@ app.post("/api/notes", function(req, res){
     res.json(newNote); 
 }); 
 
-//receive a query parameter containing the id of a note to delete,
-//give each note a unique "id" when its saved
-//to delete a note--read all notes from the db.json file, remove the note with the given "id" property, and then rewrite the notes to the db.json file.
+//to delete a note, selects specific id from db.json file, removes, and then rewrite the notes to the db.json file.
  app.delete("api/notes/:id", function(req, res){
-    const index = parseInt(req.params.id);
-    const removed = data.splice(index, 1);
+    const notesId = parseInt(req.params.id);
+    const removed = data.splice(notesId, 1);
     
     
-    fs.readFile("./db/db.json", JSON.stringify(removed), function(err){
+    fs.writeFile("./db/db.json", JSON.stringify(removed), function(err){
         if (err) throw err;
         console.log("You have deleted note.")
     });
    
 
-    res.json(removed[0])
+    res.end();
 }) 
 
 
