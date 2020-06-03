@@ -15,7 +15,7 @@ This application can be used to write, save, and delete notes. It will use an ex
 
 
 ## Deployment
-
+[Note Taker App](https://pure-chamber-85843.herokuapp.com/)
 
 
 ## Dependencies
@@ -27,6 +27,8 @@ For users that need to keep track of a lot of information, it's easy to forget o
 
 
 ## Screenshot
+![Screen Shot 2020-06-03 at 4 45 07 PM](https://user-images.githubusercontent.com/63661120/83687508-dc31b780-a5b9-11ea-9d37-39afd2927859.png)
+![Screen Shot 2020-06-03 at 4 46 32 PM](https://user-images.githubusercontent.com/63661120/83687527-e05dd500-a5b9-11ea-9440-5fb7a80d62d0.png)
 
 
 ## User Story
